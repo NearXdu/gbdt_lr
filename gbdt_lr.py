@@ -87,3 +87,13 @@ for i in range(0,len(y_pred)):
 print('Feature importances:', list(gbm.feature_importance()))
 print('Feature importances:', list(gbm.feature_importance("gain")))
 
+
+
+
+c = np.array([1,0.5,0.1,0.05,0.01,0.005,0.001])
+for t in range(0,len(c)):
+    lm = LogisticRegression(penalty='l2',C=c[t]) # logestic model construction
+    lm.fit(transformed_training_matrix,y_train.values.reshape(y_train.shape[0],))  # fitting the data
+    y_pred_est = lm.predict_proba(transformed_testing_matrix)   # Give the probabilty on each label
+
+
